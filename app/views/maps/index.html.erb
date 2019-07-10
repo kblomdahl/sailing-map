@@ -1,0 +1,49 @@
+<%= form_tag('/', method: :get, id: 'header') do %>
+  <center>
+    <label for="from">
+      Vessel
+    </label>
+    <%= select_tag :from, options_for_select(@all_from, selected: @from), { id: :from, onchange: 'submit_form(event)' } %>
+  </center>
+<% end %>
+
+<div id="map"></div>
+<script>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      mapTypeId: 'terrain',
+      zoom: 7,
+      center: {
+        lat: <%= h @waypoints.last&.lat || 0 %>,
+        lng: <%= h @waypoints.last&.lng || 0 %>
+      }
+    });
+
+    var waypoints = [
+      <% @waypoints.each do |p| %>
+        {lat: <%= h p.lat %>, lng: <%= h p.lng %>},
+      <% end %>
+    ];
+    var path = new google.maps.Polyline({
+      path: waypoints,
+      geodesic: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
+
+    path.setMap(map);
+
+    var marker = new google.maps.Marker({
+      position: {
+        lat: <%= h @waypoints.last&.lat || 0 %>,
+        lng: <%= h @waypoints.last&.lng || 0 %>
+      },
+      map: map,
+      title: ''
+    });
+  }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap">
+</script>

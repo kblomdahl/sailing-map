@@ -1,0 +1,17 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+  z-index: 1000;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+}
+
+#map {
+  height: 100%;
+}

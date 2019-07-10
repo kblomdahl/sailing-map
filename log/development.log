@@ -1,0 +1,1 @@
+DEPRECATION WARNING: `named_routes.helpers` is deprecated, please use `route_defined?(route_name)` to see if a named route was defined. (called from irb_binding at (irb):1)
