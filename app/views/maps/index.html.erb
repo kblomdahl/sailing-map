@@ -4,6 +4,8 @@
       Vessel
     </label>
     <%= select_tag :from, options_for_select(@all_from, selected: @from), { id: :from, onchange: 'submit_form(event)' } %>
+    &nbsp;
+    <%= link_to 'Go to Iridium Messaging', 'https://messaging.iridium.com/index.php', target: '_blank' %>
   </center>
 <% end %>
 
