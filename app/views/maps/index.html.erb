@@ -12,6 +12,12 @@
 <div id="map"></div>
 <script>
   function initMap() {
+    var waypoints = [
+      <% @waypoints.each do |p| %>
+        {lat: <%= h p.lat %>, lng: <%= h p.lng %>, label: '<%= h p.seen_at.to_date %>'},
+      <% end %>
+    ];
+
     var map = new google.maps.Map(document.getElementById('map'), {
       mapTypeId: 'terrain',
       zoom: 6,
@@ -21,28 +27,30 @@
       }
     });
 
-    var waypoints = [
-      <% @waypoints.each do |p| %>
-        {lat: <%= h p.lat %>, lng: <%= h p.lng %>},
-      <% end %>
-    ];
-    var path = new google.maps.Polyline({
+    new google.maps.Polyline({
       path: waypoints,
       geodesic: true,
       strokeColor: '#FF0000',
       strokeOpacity: 1.0,
-      strokeWeight: 2
+      strokeWeight: 2,
+      map: map
     });
 
-    path.setMap(map);
+    for (var i = 0; i < waypoints.length; ++i) {
+      new google.maps.Marker({
+        icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==',
+        label: waypoints[i].label,
+        position: waypoints[i],
+        map: map
+      });
+    }
 
-    var marker = new google.maps.Marker({
+    new google.maps.Marker({
       position: {
         lat: <%= h @waypoints.last&.lat || 0 %>,
         lng: <%= h @waypoints.last&.lng || 0 %>
       },
-      map: map,
-      title: ''
+      map: map
     });
   }
 </script>
