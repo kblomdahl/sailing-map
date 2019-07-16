@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.5.1'
+ruby '2.5.5'
 
 gem 'rails', '4.2.11.1'
 gem 'rails_12factor', '0.0.3'

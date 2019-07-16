@@ -1,0 +1,16 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    volumes:
+      - /var/lib/postgresql/data
+  web:
+    build: .
+    volumes:
+      - .:/app
+    labels:
+      - web
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
