@@ -11,15 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190710103026) do
+ActiveRecord::Schema.define(version: 20190803120029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "email_to_mmsis", force: :cascade do |t|
+    t.text     "email"
+    t.text     "mmsi"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "emails", force: :cascade do |t|
     t.string   "from",       null: false
     t.string   "subject"
     t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vessel_track_positions", force: :cascade do |t|
+    t.text     "mmsi"
+    t.text     "shipid"
+    t.integer  "status"
+    t.decimal  "speed"
+    t.decimal  "lon"
+    t.decimal  "lat"
+    t.decimal  "course"
+    t.decimal  "heading"
+    t.datetime "timestamp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

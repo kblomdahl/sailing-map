@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mmsi: MyText
+  status: 1
+  speed: 9.99
+  lon: 9.99
+  lat: 9.99
+  course: 9.99
+  heading: 9.99
+  timestamp: 2019-08-03 13:50:52
+
+two:
+  mmsi: MyText
+  status: 1
+  speed: 9.99
+  lon: 9.99
+  lat: 9.99
+  course: 9.99
+  heading: 9.99
+  timestamp: 2019-08-03 13:50:52

@@ -1,5 +1,6 @@
 .idea
 .vscode
 .bundle/config
-vendor/bundle
-tmp/
+.env
+/vendor/bundle
+/tmp/
