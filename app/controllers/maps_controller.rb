@@ -25,8 +25,8 @@ class MapsController < ApplicationController
     # try to get an update from MarineTraffic about the boats position
     from_date =  @waypoints.last.seen_at.utc
 
-    if @mmsi && @waypoints.last.seen_at < (Time.now.utc - 6.hours)
-      MarineTrafficPosition.for_vessel(@mmsi, from_date).each do |position|
+    if @mmsi && @waypoints.last.seen_at < (Time.now.utc - 1.days)
+      MarineTrafficPosition.for_vessel(@mmsi, from_date + 1.days).each do |position|
         puts(position.attributes)
         @waypoints << VesselTrackPosition.create(
           mmsi: position.MMSI,
